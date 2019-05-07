@@ -10,11 +10,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.in28minutes.todo.TodoService;
 
+import sqlite.connect.LoginModel;
+
 @WebServlet(urlPatterns = "/login.do")
 public class LoginServlet extends HttpServlet {
 
 	private LoginService userValidationService = new LoginService();
 	private TodoService todoService = new TodoService();
+
+	private LoginModel login = new LoginModel();
 
 	// handle the get method
 	protected void doGet(HttpServletRequest request, HttpServletResponse respone) throws ServletException, IOException {
@@ -48,6 +52,11 @@ public class LoginServlet extends HttpServlet {
 		boolean isUserValid = userValidationService.isUserValid(name, pass);
 
 		if (isUserValid) {
+
+			if (login != null) {
+				System.out.println("connection with database success");
+			}
+
 			// put everything in the welcome page
 			// request.setAttribute("todos", todoService.retrieveTodos());
 			// request.getRequestDispatcher("/WEB-INF/views/welcome.jsp").forward(request,
@@ -57,7 +66,7 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect("/todo.do");
 
 		} else {
-			request.setAttribute("errorMsg", "Invalidos credentials!");
+			request.setAttribute("errorMsg", "Invalid credentials!");
 			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
 
 		}
