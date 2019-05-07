@@ -1,5 +1,7 @@
 com\in28minutes\todo\Todo.class
+com\in28minutes\login\LoginService.class
+sqlite\connect\SqliteConnection.class
 com\in28minutes\todo\TodoService.class
 com\in28minutes\todo\TodoServlet.class
 com\in28minutes\login\LoginServlet.class
-com\in28minutes\login\LoginService.class
+sqlite\connect\LoginModel.class
